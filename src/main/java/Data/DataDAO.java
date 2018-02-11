@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+//Слой для взаимодействия данных приложения с БД
+
 public class DataDAO {
 
     public static ObservableList<Data> getAllData() throws SQLException, ClassNotFoundException{
@@ -23,14 +25,9 @@ public class DataDAO {
     }
 
     public static void insertData(String date, String action) throws SQLException, ClassNotFoundException{
-        String insertEntry =  "BEGIN\n" +
-                "INSERT INTO ToDoList\n" +
-                "(DATE, ACTION)\n" +
-                "VALUES\n" +
-                "(" + date + "," +action + ");\n" +
-                "END;";
         try {
-            DBUtilities.insertEntryIntoTable(insertEntry);
+            DBUtilities.insertEntryIntoTable(date, action);
+            System.out.println("Successfully added...");
         } catch (SQLException ex){
             System.out.println("Something wrong..." + ex);
         }

@@ -4,6 +4,9 @@ import com.sun.rowset.CachedRowSetImpl;
 
 import java.sql.*;
 
+//Вспомогательный класс для соединения с БД, разрыва соединения с БД,
+//выборки всех данных и вставки новых данных
+
 public class DBUtilities {
     private static Connection dbConnection = null;
     private static final String JAVA_DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
@@ -12,7 +15,7 @@ public class DBUtilities {
     private static String connectionURL = "jdbc:derby:" + dbName + "; create = true";
     private static String createTable = "create table ToDoList " +
                                         "(ID INT NOT NULL GENERATED ALWAYS AS IDENTITY CONSTRAINT PK PRIMARY KEY," +
-                                        "DATE VARCHAR(20), Action VARCHAR(101))";
+                                        "DATE VARCHAR(25), Action VARCHAR(105))";
 
     public static void dbConnect(){
         Statement creationTable;
@@ -83,17 +86,20 @@ public class DBUtilities {
         return crs;
     }
 
-    public static void insertEntryIntoTable(String template) throws SQLException, ClassNotFoundException {
-        Statement statement = null;
+    public static void insertEntryIntoTable(String date, String action) throws SQLException, ClassNotFoundException {
+        PreparedStatement insertStatement = null;
         try {
             dbConnect();
-            statement= dbConnection.createStatement();
-            statement.execute(template);
+            insertStatement = dbConnection.prepareStatement("insert into TODOLIST" +
+                                                     "(DATE, ACTION) values (?,?)");
+            insertStatement.setString(1, date);
+            insertStatement.setString(2, action);
+            insertStatement.executeUpdate();
             } catch (SQLException ex){
                 System.out.println("Cannot complete SQL operation, because " + ex);
             } finally {
-                if (statement != null){
-                    statement.close();
+                if (insertStatement != null){
+                    insertStatement.close();
                 }
                 dbDisconnect();
         }
