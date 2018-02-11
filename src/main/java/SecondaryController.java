@@ -27,6 +27,8 @@ public class SecondaryController {
 
     public TableView<Data> secondaryTableView;
 
+
+    //Закрытие второго окна и обновление содержимого в первом окне
     @FXML
     void saveEntry(ActionEvent event) {
         TaskUtilities.updateTable(secondaryTableView, textDataField.getText(), textAreaAction.getText());

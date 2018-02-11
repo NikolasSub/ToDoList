@@ -15,7 +15,7 @@ public class PrimaryStage extends Stage{
             Scene scene = new Scene(vBox);
             this.setScene(scene);
         } catch (IOException ioe) {
-            System.out.println("Cant run...");
+            System.out.println("Cannot run...");
             ioe.printStackTrace();
         }
         this.setTitle("ToDoApp");

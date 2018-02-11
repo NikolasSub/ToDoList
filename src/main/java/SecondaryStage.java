@@ -5,7 +5,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import Data.*;
 
-
 import java.io.IOException;
 
 public class SecondaryStage extends Stage {
@@ -16,7 +15,9 @@ public class SecondaryStage extends Stage {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ToDoApp.class.getResource("/View/SecondaryStage.fxml"));
             hBox = loader.load();
-            SecondaryController secondaryController = (SecondaryController) loader.getController();
+            //Привязка UI-элемента первого окна (TableView)
+            //к контроллеру второго окна для обновления данных в первом окне
+            SecondaryController secondaryController = loader.getController();
             secondaryController.secondaryTableView = tableView;
         } catch (IOException e) {
             e.printStackTrace();

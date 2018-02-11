@@ -2,6 +2,8 @@ package Data;
 
 import javafx.beans.property.SimpleStringProperty;
 
+//Класс для представления информации типа "дата-заметка"
+
 public class Data{
     private SimpleStringProperty date;
     private SimpleStringProperty action;

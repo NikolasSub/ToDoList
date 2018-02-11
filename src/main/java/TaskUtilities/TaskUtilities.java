@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 
 public class TaskUtilities {
     //Объект, используемый для генерации потоков - создаём пул потоков со свойствами демонов
-    private static Executor exec = Executors.newCachedThreadPool((r -> {
+    private static final Executor exec = Executors.newCachedThreadPool((r -> {
         Thread t = new Thread(r);
         t.setDaemon(true);
         return t;
