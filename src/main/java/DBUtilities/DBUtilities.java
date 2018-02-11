@@ -11,8 +11,7 @@ public class DBUtilities {
     private static Connection dbConnection = null;
     private static final String JAVA_DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
 
-    private static String dbName = "ToDoTable";
-    private static String connectionURL = "jdbc:derby:" + dbName + "; create = true";
+    private static String connectionURL = "jdbc:derby:memory:demo; create = true";
     private static String createTable = "create table ToDoList " +
                                         "(ID INT NOT NULL GENERATED ALWAYS AS IDENTITY CONSTRAINT PK PRIMARY KEY," +
                                         "DATE VARCHAR(25), Action VARCHAR(105))";
